@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Realfagslaben – Realfag på en ny måte</title>
+<title>Realfagslaben – Utforsk, eksperimenter og lær – realfag på en ny måte</title>
 <meta name="description" content="Realfagslaben – forelesere, mentorer og forfattere som gjør matematikk, kjemi og realfag tilgjengelige, forståelige og morsomme å lære.">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -175,7 +174,7 @@
     font-weight: 700;
     line-height: 1.12;
     letter-spacing: -0.02em;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
@@ -189,8 +188,22 @@
     font-style: italic;
   }
 
-  .hero p {
-    font-size: 1.1rem;
+  /* Undertittel – beholdt fra originalen */
+  .hero .undertittel {
+    font-family: Georgia, serif;
+    font-size: clamp(1.05rem, 2.4vw, 1.45rem);
+    font-weight: 500;
+    color: var(--gronn-mork);
+    font-style: italic;
+    letter-spacing: -0.01em;
+    margin-bottom: 22px;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero > p {
+    font-size: 1.08rem;
     color: #4b5563;
     margin: 0 auto 32px;
     max-width: 680px;
@@ -451,11 +464,12 @@
   <!-- Hero -->
   <section class="hero">
     <span class="eyebrow">Forelesere · Mentorer · Forfattere</span>
-    <h1>Vi gjør realfagene <span class="gradient">tilgjengelige, forståelige og morsomme</span> å lære.</h1>
+    <h1>Realfagslaben</h1>
+    <p class="undertittel">Utforsk, eksperimenter og lær – realfag på en ny måte.</p>
     <p>
-      Realfagslaben samler forelesere, mentorer og forfattere med erfaring fra
-      matematikk, kjemi og flere realfag. Sammen viser vi hva realfag kan brukes til –
-      og hvorfor de er blant de mest spennende fagene vi har.
+      Vi samler forelesere, mentorer og forfattere med erfaring fra matematikk,
+      kjemi og flere realfag. Sammen gjør vi realfagene <span class="gradient">tilgjengelige,
+      forståelige og morsomme</span> å lære – og viser hva de kan brukes til.
     </p>
     <div class="hero-knapper">
       <a href="Realfagsassistenten/" class="knapp knapp-primær">
