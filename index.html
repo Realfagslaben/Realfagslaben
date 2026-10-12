@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Realfagslaben – Utforsk, eksperimenter og lær – realfag på en ny måte</title>
+<title>Realfagslaben – En reise i realfagsverden</title>
 <meta name="description" content="Realfagslaben – forelesere, mentorer og forfattere som gjør matematikk, kjemi og realfag tilgjengelige, forståelige og morsomme å lære.">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -107,6 +108,12 @@
     align-items: center;
   }
 
+  .logo-wrap {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
   .logo {
     font-family: Georgia, serif;
     font-size: 1.2rem;
@@ -117,6 +124,15 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+
+  .logo-undertittel {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2px;
   }
 
   .nav-lenker {
@@ -174,7 +190,7 @@
     font-weight: 700;
     line-height: 1.12;
     letter-spacing: -0.02em;
-    margin-bottom: 14px;
+    margin-bottom: 20px;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
@@ -188,22 +204,8 @@
     font-style: italic;
   }
 
-  /* Undertittel – beholdt fra originalen */
-  .hero .undertittel {
-    font-family: Georgia, serif;
-    font-size: clamp(1.05rem, 2.4vw, 1.45rem);
-    font-weight: 500;
-    color: var(--gronn-mork);
-    font-style: italic;
-    letter-spacing: -0.01em;
-    margin-bottom: 22px;
-    max-width: 760px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero > p {
-    font-size: 1.08rem;
+  .hero p {
+    font-size: 1.1rem;
     color: #4b5563;
     margin: 0 auto 32px;
     max-width: 680px;
@@ -385,6 +387,7 @@
     .nav-lenker { gap: 14px; }
     .nav-lenker a { font-size: 0.82rem; }
     .nav-lenker a.cta { padding: 8px 14px; }
+    .logo-undertittel { font-size: 0.62rem; }
     .kort { padding: 28px 24px; }
   }
 </style>
@@ -452,7 +455,10 @@
   <!-- Meny -->
   <header>
     <nav class="nav">
-      <a href="index.html" class="logo">Realfagslaben</a>
+      <a href="index.html" class="logo-wrap">
+        <span class="logo">Realfagslaben</span>
+        <span class="logo-undertittel">En reise i realfagsverden</span>
+      </a>
       <ul class="nav-lenker">
         <li><a href="Realfagsassistenten/" class="cta">Realfagsassistenten</a></li>
         <li><a href="Om/">Om</a></li>
@@ -464,12 +470,11 @@
   <!-- Hero -->
   <section class="hero">
     <span class="eyebrow">Forelesere · Mentorer · Forfattere</span>
-    <h1>Realfagslaben</h1>
-    <p class="undertittel">Utforsk, eksperimenter og lær – realfag på en ny måte.</p>
+    <h1>Vi gjør realfagene <span class="gradient">tilgjengelige, forståelige og morsomme</span> å lære.</h1>
     <p>
-      Vi samler forelesere, mentorer og forfattere med erfaring fra matematikk,
-      kjemi og flere realfag. Sammen gjør vi realfagene <span class="gradient">tilgjengelige,
-      forståelige og morsomme</span> å lære – og viser hva de kan brukes til.
+      Realfagslaben samler forelesere, mentorer og forfattere med erfaring fra
+      matematikk, kjemi og flere realfag. Sammen viser vi hva realfag kan brukes til –
+      og hvorfor de er blant de mest spennende fagene vi har.
     </p>
     <div class="hero-knapper">
       <a href="Realfagsassistenten/" class="knapp knapp-primær">
@@ -486,7 +491,7 @@
   <section class="utforsk">
     <div class="utforsk-header">
       <h2>Utforsk Realfagslaben</h2>
-      <p>Velg en inngang – vi har gjort det enkelt å komme i gang</p>
+      <p>Utforsk, eksperimenter og lær – realfag på en ny måte</p>
     </div>
 
     <div class="kort-grid">
