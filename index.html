@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Realfagslaben</title>
+<title>Realfagslaben – En reise i realfagsverden</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -17,7 +17,6 @@
     --tekst: #1a1a1a;
     --muted: #6b7280;
     --bg: #fbfcfe;
-    --bg-alt: #f4f7fb;
     --border: #e6ebf2;
   }
 
@@ -32,10 +31,9 @@
     color: var(--tekst);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
-    cursor: none;
   }
 
-  /* ---------- Bakgrunnsdekor ---------- */
+  /* Bakgrunnsdekor */
   .bakgrunn {
     position: fixed;
     inset: 0;
@@ -65,27 +63,27 @@
     bottom: -140px; left: 20%;
   }
 
-  /* ---------- Klokke som følger musen ---------- */
+  /* Klokke */
   .klokke {
     position: fixed;
     top: 0;
     left: 0;
-    width: 140px;
-    height: 140px;
+    width: 170px;
+    height: 170px;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
     will-change: transform;
+    mix-blend-mode: multiply;
   }
-
   .klokke svg {
     width: 100%;
     height: 100%;
     overflow: visible;
-    filter: drop-shadow(0 6px 16px rgba(59, 130, 246, 0.18));
+    filter: drop-shadow(0 6px 18px rgba(59, 130, 246, 0.18));
   }
 
-  /* ---------- Meny ---------- */
+  /* Meny */
   header {
     position: sticky;
     top: 0;
@@ -99,47 +97,22 @@
   .nav {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 14px 24px;
+    padding: 16px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 16px;
   }
 
   .logo-wrap {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    flex-shrink: 0;
-  }
-
-  .logo-ikon {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    background: linear-gradient(135deg, #dbeafe, #d1fae5 55%, #ede9fe);
-    border: 1px solid var(--border);
-    flex-shrink: 0;
-    transition: transform 0.25s ease;
-  }
-  .logo-wrap:hover .logo-ikon {
-    transform: rotate(-6deg) scale(1.06);
-  }
-
-  .logo-tekst {
-    display: flex;
     flex-direction: column;
     line-height: 1.15;
+    text-decoration: none;
   }
 
   .logo {
     font-family: Georgia, serif;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: -0.01em;
     background: linear-gradient(90deg, var(--bla-mork), var(--gronn-mork), var(--lilla-mork));
@@ -149,27 +122,26 @@
   }
 
   .logo-undertittel {
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     font-weight: 500;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     color: var(--muted);
-    margin-top: 1px;
+    margin-top: 2px;
   }
 
   .nav-lenker {
     display: flex;
-    gap: 16px;
+    gap: 20px;
     list-style: none;
     align-items: center;
-    flex-shrink: 0;
   }
   .nav-lenker a {
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     font-weight: 500;
     color: var(--tekst);
     text-decoration: none;
     transition: color 0.2s;
-    white-space: nowrap;
   }
   .nav-lenker a:hover { color: var(--bla-mork); }
   .nav-lenker a.cta {
@@ -185,33 +157,25 @@
     box-shadow: 0 8px 20px rgba(59, 130, 246, 0.28);
   }
 
-  /* ---------- Hero ---------- */
+  /* Hero */
   .hero {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 72px 24px 56px;
+    padding: 72px 24px 40px;
     text-align: center;
-    position: relative;
   }
 
   .hero h1 {
     font-family: Georgia, serif;
-    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
-    line-height: 1.12;
+    line-height: 1.15;
     letter-spacing: -0.02em;
-    margin-bottom: 20px;
-    max-width: 860px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero h1 .gradient {
+    margin-bottom: 32px;
     background: linear-gradient(90deg, var(--bla-mork), var(--gronn-mork), var(--lilla-mork));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    font-style: italic;
   }
 
   .hero-knapper {
@@ -219,7 +183,6 @@
     gap: 14px;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 8px;
   }
 
   .knapp {
@@ -260,55 +223,41 @@
     box-shadow: 0 10px 24px rgba(59, 130, 246, 0.15);
   }
 
-  /* ---------- Fargebånd ---------- */
-  .bånd {
-    height: 5px;
-    max-width: 200px;
-    margin: 44px auto 0;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--bla), var(--gronn), var(--lilla));
-  }
-
-  /* ---------- Kort-seksjon ---------- */
+  /* Kort-seksjon */
   .utforsk {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 24px 24px 88px;
+    padding: 40px 24px 96px;
   }
 
   .utforsk-header {
     text-align: center;
-    margin-bottom: 44px;
+    margin-bottom: 48px;
   }
   .utforsk-header h2 {
     font-family: Georgia, serif;
-    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 700;
     letter-spacing: -0.015em;
-    margin-bottom: 8px;
-  }
-  .utforsk-header p {
-    color: var(--muted);
-    font-size: 1rem;
   }
 
   .kort-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 22px;
+    gap: 24px;
   }
 
   .kort {
     background: #fff;
     border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 30px 28px;
+    border-radius: 22px;
+    padding: 36px 32px;
     text-decoration: none;
     color: var(--tekst);
     transition: transform 0.2s, box-shadow 0.3s, border-color 0.25s;
     display: flex;
-    align-items: center;
-    gap: 18px;
+    flex-direction: column;
+    gap: 12px;
     position: relative;
     overflow: hidden;
   }
@@ -329,14 +278,14 @@
   .kort:hover::before { opacity: 1; }
 
   .kort .ikon {
-    font-size: 1.9rem;
-    width: 58px;
-    height: 58px;
+    font-size: 2rem;
+    width: 62px;
+    height: 62px;
     border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    margin-bottom: 8px;
   }
   .kort.kort-bla .ikon { background: #dbeafe; }
   .kort.kort-gronn .ikon { background: #d1fae5; }
@@ -347,61 +296,32 @@
 
   .kort h3 {
     font-family: Georgia, serif;
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 700;
-    line-height: 1.3;
   }
 
-  /* ---------- Bunnnotat ---------- */
   footer {
     border-top: 1px solid var(--border);
     padding: 40px 24px;
     text-align: center;
-    background: var(--bg-alt);
+    background: #f4f7fb;
   }
-  footer p { color: var(--muted); font-size: 0.86rem; }
-  footer a {
-    color: var(--lilla-mork);
-    text-decoration: none;
-    font-weight: 500;
-  }
+  footer p { color: var(--muted); font-size: 0.88rem; }
+  footer a { color: var(--lilla-mork); text-decoration: none; font-weight: 500; }
   footer a:hover { text-decoration: underline; }
 
-  /* ---------- Mobil ---------- */
   @media (max-width: 900px) {
-    body { cursor: auto; }
     .klokke { display: none; }
-
-    .nav {
-      flex-wrap: wrap;
-      gap: 10px;
-      padding: 12px 18px;
-    }
-    .logo-wrap { order: 1; flex: 1 1 auto; }
-    .nav-lenker {
-      order: 2;
-      flex: 1 1 auto;
-      justify-content: flex-end;
-      gap: 12px;
-    }
-    .nav-lenker a { font-size: 0.82rem; }
-    .nav-lenker a.cta { padding: 8px 14px; font-size: 0.8rem; }
-
-    .hero { padding: 48px 20px 40px; }
+    .hero { padding: 48px 24px 32px; }
     .kort-grid { grid-template-columns: 1fr; }
   }
 
-  @media (max-width: 480px) {
-    .logo { font-size: 1rem; }
-    .logo-undertittel { font-size: 0.6rem; }
-    .logo-ikon { width: 34px; height: 34px; font-size: 1.15rem; }
-    .nav { padding: 10px 14px; gap: 8px; }
-    .nav-lenker { gap: 8px; }
-    .nav-lenker a { font-size: 0.76rem; }
-    .nav-lenker a.cta { padding: 6px 11px; font-size: 0.74rem; }
-    .hero-knapper { flex-direction: column; }
-    .knapp { justify-content: center; width: 100%; }
-    .kort { padding: 24px 20px; gap: 14px; }
+  @media (max-width: 600px) {
+    .nav-lenker { gap: 14px; }
+    .nav-lenker a { font-size: 0.82rem; }
+    .nav-lenker a.cta { padding: 8px 14px; }
+    .logo-undertittel { font-size: 0.62rem; }
+    .kort { padding: 28px 24px; }
   }
 </style>
 </head>
@@ -414,7 +334,7 @@
     <div class="boble boble-3"></div>
   </div>
 
-  <!-- Klokke som følger musen -->
+  <!-- Klokke -->
   <div class="klokke" id="klokke">
     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -469,23 +389,18 @@
   <header>
     <nav class="nav">
       <a href="index.html" class="logo-wrap">
-        <span class="logo-ikon" aria-hidden="true">🔬</span>
-        <span class="logo-tekst">
-          <span class="logo">Realfagslaben</span>
-          <span class="logo-undertittel">En reise i realfagsverden</span>
-        </span>
+        <span class="logo">Realfagslaben</span>
+        <span class="logo-undertittel">En reise i realfagsverden</span>
       </a>
       <ul class="nav-lenker">
         <li><a href="Realfagsassistenten/" class="cta">Realfagsassistenten</a></li>
-        <li><a href="Om/">Om</a></li>
-        <li><a href="Portalen/">Portalen</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- Hero -->
   <section class="hero">
-    <h1>Vi gjør realfagene <span class="gradient">tilgjengelige, forståelige og morsomme</span> å lære.</h1>
+    <h1>En reise i realfagsverden</h1>
     <div class="hero-knapper">
       <a href="Realfagsassistenten/" class="knapp knapp-primær">
         🧪 Realfagsassistenten
@@ -494,14 +409,12 @@
         Om Realfagslaben
       </a>
     </div>
-    <div class="bånd"></div>
   </section>
 
   <!-- Kort -->
   <section class="utforsk">
     <div class="utforsk-header">
-      <h2>Utforsk Realfagslaben</h2>
-      <p>Utforsk, eksperimenter og lær – realfag på en ny måte</p>
+      <h2>Utforsk, eksperimenter og lær – realfag på en ny måte</h2>
     </div>
 
     <div class="kort-grid">
@@ -528,14 +441,11 @@
   </section>
 
   <footer>
-    <p>© <span id="aar"></span> Realfagslaben</p>
+    <p>© <span id="aar"></span> Realfagslaben · <a href="https://github.com/Realfagslaben">GitHub</a></p>
   </footer>
 
   <script>
-    // =====================================================
-    // KLOKKE SOM FØLGER MUSEN
-    // – Blir ellipse når man drar, går mykt tilbake til sirkel
-    // =====================================================
+    // Klokke som følger musen
     const klokke = document.getElementById('klokke');
     const urskive = document.getElementById('urskive');
     const timeviser = document.getElementById('timeviser');
@@ -553,14 +463,8 @@
     const ANTALL_PUNKTER = 72;
     const BASIS_RADIUS = 92;
 
-    let deformasjon = 0;
-    let maalDeformasjon = 0;
-    let deformRetning = 0;
-    let hastighetMyk = 0;
-
     let forskyvninger = new Array(ANTALL_PUNKTER).fill(0);
     let maalforskyvninger = new Array(ANTALL_PUNKTER).fill(0);
-
     let t = 0;
 
     document.addEventListener('mousemove', (e) => {
@@ -572,10 +476,8 @@
 
     document.addEventListener('mousedown', () => { dratt = true; });
     document.addEventListener('mouseup', () => { dratt = false; });
-
     document.addEventListener('touchstart', () => { dratt = true; }, { passive: true });
     document.addEventListener('touchend', () => { dratt = false; }, { passive: true });
-
     document.addEventListener('touchmove', (e) => {
       if (e.touches[0]) {
         forrigeMusX = musX;
@@ -617,7 +519,7 @@
     function animer() {
       t += 0.016;
 
-      const smootheness = 0.14;
+      const smootheness = 0.12;
       klokkeX += (musX - klokkeX) * smootheness;
       klokkeY += (musY - klokkeY) * smootheness;
       klokke.style.transform = `translate(${klokkeX}px, ${klokkeY}px) translate(-50%, -50%)`;
@@ -625,28 +527,18 @@
       const dx = musX - forrigeMusX;
       const dy = musY - forrigeMusY;
       const hastighet = Math.min(Math.sqrt(dx * dx + dy * dy), 40);
-      hastighetMyk += (hastighet - hastighetMyk) * 0.15;
-
-      if (dratt && hastighetMyk > 0.5) {
-        maalDeformasjon = Math.min(hastighetMyk * 0.55, 22);
-        deformRetning = Math.atan2(dy, dx);
-      } else {
-        maalDeformasjon = 0;
-      }
-
-      deformasjon += (maalDeformasjon - deformasjon) * 0.08;
+      const retning = Math.atan2(dy, dx);
 
       for (let i = 0; i < ANTALL_PUNKTER; i++) {
         const vinkel = (i / ANTALL_PUNKTER) * Math.PI * 2;
-
-        let ellipse = 0;
-        if (deformasjon > 0.05) {
-          ellipse = Math.cos(2 * (vinkel - deformRetning)) * deformasjon;
+        if (dratt && hastighet > 0.5) {
+          const samsvar = Math.cos(vinkel - retning);
+          const jevn = Math.sign(samsvar) * Math.pow(Math.abs(samsvar), 1.6);
+          const stoyVerdi = stoy(vinkel, t) * 0.9;
+          maalforskyvninger[i] = (jevn * hastighet * 1.6) + stoyVerdi * hastighet * 0.15;
+        } else {
+          maalforskyvninger[i] = stoy(vinkel, t) * 0.15;
         }
-
-        const pust = stoy(vinkel, t) * 0.15;
-
-        maalforskyvninger[i] = ellipse + pust;
         forskyvninger[i] += (maalforskyvninger[i] - forskyvninger[i]) * 0.15;
       }
 
@@ -670,14 +562,9 @@
       const timer = naa.getHours() % 12;
       const minutter = naa.getMinutes();
       const sekunder = naa.getSeconds();
-
-      const timeVinkel = (timer * 30) + (minutter * 0.5);
-      const minuttVinkel = (minutter * 6) + (sekunder * 0.1);
-      const sekundVinkel = sekunder * 6;
-
-      timeviser.setAttribute('transform', `rotate(${timeVinkel} 100 100)`);
-      minuttviser.setAttribute('transform', `rotate(${minuttVinkel} 100 100)`);
-      sekundviser.setAttribute('transform', `rotate(${sekundVinkel} 100 100)`);
+      timeviser.setAttribute('transform', `rotate(${(timer * 30) + (minutter * 0.5)} 100 100)`);
+      minuttviser.setAttribute('transform', `rotate(${(minutter * 6) + (sekunder * 0.1)} 100 100)`);
+      sekundviser.setAttribute('transform', `rotate(${sekundviser * 6} 100 100)`);
     }
     setInterval(oppdaterKlokke, 1000);
     oppdaterKlokke();
