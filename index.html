@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Realfagslaben – En reise i realfagsverden</title>
-<meta name="description" content="Realfagslaben – forelesere, mentorer og forfattere som gjør matematikk, kjemi og realfag tilgjengelige, forståelige og morsomme å lære.">
+<title>Realfagslaben</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -108,7 +106,6 @@
     gap: 16px;
   }
 
-  /* Logo med skarpt mikroskop (SVG) */
   .logo-wrap {
     display: flex;
     align-items: center;
@@ -118,12 +115,13 @@
   }
 
   .logo-ikon {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.4rem;
     background: linear-gradient(135deg, #dbeafe, #d1fae5 55%, #ede9fe);
     border: 1px solid var(--border);
     flex-shrink: 0;
@@ -132,7 +130,6 @@
   .logo-wrap:hover .logo-ikon {
     transform: rotate(-6deg) scale(1.06);
   }
-  .logo-ikon svg { width: 26px; height: 26px; display: block; }
 
   .logo-tekst {
     display: flex;
@@ -159,30 +156,27 @@
     margin-top: 1px;
   }
 
-  /* Knapper til VENSTRE, stablet vertikalt */
   .nav-lenker {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    gap: 16px;
     list-style: none;
-    align-items: flex-start;
+    align-items: center;
     flex-shrink: 0;
   }
   .nav-lenker a {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 500;
     color: var(--tekst);
     text-decoration: none;
     transition: color 0.2s;
     white-space: nowrap;
-    padding: 4px 0;
   }
   .nav-lenker a:hover { color: var(--bla-mork); }
   .nav-lenker a.cta {
     color: #fff;
     font-weight: 600;
     background: linear-gradient(90deg, var(--bla), var(--gronn), var(--lilla));
-    padding: 8px 16px;
+    padding: 9px 18px;
     border-radius: 999px;
     transition: transform 0.2s, box-shadow 0.2s;
   }
@@ -195,31 +189,18 @@
   .hero {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 64px 24px 48px;
+    padding: 72px 24px 56px;
     text-align: center;
     position: relative;
   }
 
-  .hero .eyebrow {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--lilla-mork);
-    background: #ede9fe;
-    padding: 6px 14px;
-    border-radius: 999px;
-    margin-bottom: 20px;
-  }
-
   .hero h1 {
     font-family: Georgia, serif;
-    font-size: clamp(1.8rem, 4.5vw, 2.9rem);
+    font-size: clamp(2rem, 5vw, 3.2rem);
     font-weight: 700;
-    line-height: 1.14;
+    line-height: 1.12;
     letter-spacing: -0.02em;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
     max-width: 860px;
     margin-left: auto;
     margin-right: auto;
@@ -233,18 +214,57 @@
     font-style: italic;
   }
 
-  .hero p {
-    font-size: 1.05rem;
-    color: #4b5563;
-    margin: 0 auto 28px;
-    max-width: 640px;
+  .hero-knapper {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  .knapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 30px;
+    border-radius: 999px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.25s, background 0.25s, color 0.25s;
+    border: 1px solid transparent;
+  }
+
+  .knapp-primær {
+    color: #fff;
+    background: linear-gradient(90deg, var(--bla), var(--gronn), var(--lilla));
+    background-size: 200% 100%;
+    background-position: 0% 50%;
+    transition: background-position 0.5s, transform 0.2s, box-shadow 0.25s;
+  }
+  .knapp-primær:hover {
+    background-position: 100% 50%;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(139, 92, 246, 0.28);
+  }
+
+  .knapp-sekundær {
+    color: var(--bla-mork);
+    background: #fff;
+    border-color: var(--border);
+  }
+  .knapp-sekundær:hover {
+    border-color: var(--bla);
+    color: var(--bla);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(59, 130, 246, 0.15);
   }
 
   /* ---------- Fargebånd ---------- */
   .bånd {
     height: 5px;
     max-width: 200px;
-    margin: 40px auto 0;
+    margin: 44px auto 0;
     border-radius: 999px;
     background: linear-gradient(90deg, var(--bla), var(--gronn), var(--lilla));
   }
@@ -253,7 +273,7 @@
   .utforsk {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 32px 24px 88px;
+    padding: 24px 24px 88px;
   }
 
   .utforsk-header {
@@ -282,13 +302,13 @@
     background: #fff;
     border: 1px solid var(--border);
     border-radius: 20px;
-    padding: 32px 28px;
+    padding: 30px 28px;
     text-decoration: none;
     color: var(--tekst);
     transition: transform 0.2s, box-shadow 0.3s, border-color 0.25s;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    gap: 18px;
     position: relative;
     overflow: hidden;
   }
@@ -316,7 +336,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 6px;
+    flex-shrink: 0;
   }
   .kort.kort-bla .ikon { background: #dbeafe; }
   .kort.kort-gronn .ikon { background: #d1fae5; }
@@ -329,23 +349,8 @@
     font-family: Georgia, serif;
     font-size: 1.25rem;
     font-weight: 700;
+    line-height: 1.3;
   }
-  .kort p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
-
-  .kort .pil {
-    margin-top: auto;
-    padding-top: 14px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: gap 0.2s;
-  }
-  .kort.kort-bla .pil { color: var(--bla-mork); }
-  .kort.kort-gronn .pil { color: var(--gronn-mork); }
-  .kort.kort-lilla .pil { color: var(--lilla-mork); }
-  .kort:hover .pil { gap: 12px; }
 
   /* ---------- Bunnnotat ---------- */
   footer {
@@ -368,31 +373,35 @@
     .klokke { display: none; }
 
     .nav {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
       padding: 12px 18px;
     }
+    .logo-wrap { order: 1; flex: 1 1 auto; }
     .nav-lenker {
-      width: 100%;
-      gap: 6px;
+      order: 2;
+      flex: 1 1 auto;
+      justify-content: flex-end;
+      gap: 12px;
     }
-    .nav-lenker a { font-size: 0.86rem; }
-    .nav-lenker a.cta { padding: 7px 14px; font-size: 0.84rem; }
+    .nav-lenker a { font-size: 0.82rem; }
+    .nav-lenker a.cta { padding: 8px 14px; font-size: 0.8rem; }
 
-    .hero { padding: 44px 20px 36px; }
+    .hero { padding: 48px 20px 40px; }
     .kort-grid { grid-template-columns: 1fr; }
-    .kort { padding: 28px 24px; }
   }
 
   @media (max-width: 480px) {
     .logo { font-size: 1rem; }
     .logo-undertittel { font-size: 0.6rem; }
-    .logo-ikon { width: 36px; height: 36px; }
-    .logo-ikon svg { width: 22px; height: 22px; }
-    .nav { padding: 10px 14px; }
-    .nav-lenker a { font-size: 0.82rem; }
-    .nav-lenker a.cta { padding: 6px 12px; font-size: 0.8rem; }
+    .logo-ikon { width: 34px; height: 34px; font-size: 1.15rem; }
+    .nav { padding: 10px 14px; gap: 8px; }
+    .nav-lenker { gap: 8px; }
+    .nav-lenker a { font-size: 0.76rem; }
+    .nav-lenker a.cta { padding: 6px 11px; font-size: 0.74rem; }
+    .hero-knapper { flex-direction: column; }
+    .knapp { justify-content: center; width: 100%; }
+    .kort { padding: 24px 20px; gap: 14px; }
   }
 </style>
 </head>
@@ -460,33 +469,7 @@
   <header>
     <nav class="nav">
       <a href="index.html" class="logo-wrap">
-        <span class="logo-ikon" aria-hidden="true">
-          <!-- Skarpt mikroskop i SVG -->
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Okular -->
-            <rect x="10.5" y="2.2" width="3" height="3.6" rx="0.6"
-                  fill="#1e40af"/>
-            <!-- Rør -->
-            <rect x="11.3" y="5.6" width="1.4" height="4.4"
-                  fill="#1e40af"/>
-            <!-- Objektiv -->
-            <path d="M10.4 10 L13.6 10 L12.9 12.6 L11.1 12.6 Z"
-                  fill="#10b981"/>
-            <!-- Preparat/lysstråle -->
-            <path d="M12 13 L12 15" stroke="#8b5cf6" stroke-width="0.9" stroke-linecap="round"/>
-            <!-- Arm -->
-            <path d="M8.5 8.5 C 6.4 9.4 5.2 11.2 5.2 13.6 C 5.2 16.4 7 18.6 10 19.4"
-                  stroke="#1e40af" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-            <!-- Bord/plattform -->
-            <rect x="8.2" y="15.6" width="7.6" height="1.1" rx="0.4"
-                  fill="#8b5cf6"/>
-            <!-- Base -->
-            <path d="M7 20.4 C 7 19.4 8 19 9.5 19 L14.5 19 C 16 19 17 19.4 17 20.4 Z"
-                  fill="#1e40af"/>
-            <!-- Lys under bord -->
-            <circle cx="12" cy="17.4" r="0.7" fill="#10b981"/>
-          </svg>
-        </span>
+        <span class="logo-ikon" aria-hidden="true">🔬</span>
         <span class="logo-tekst">
           <span class="logo">Realfagslaben</span>
           <span class="logo-undertittel">En reise i realfagsverden</span>
@@ -495,20 +478,22 @@
       <ul class="nav-lenker">
         <li><a href="Realfagsassistenten/" class="cta">Realfagsassistenten</a></li>
         <li><a href="Om/">Om</a></li>
-        <li><a href="Realfagsportalen/">Realfagsportalen</a></li>
+        <li><a href="Portalen/">Portalen</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- Hero -->
   <section class="hero">
-    <span class="eyebrow">Forelesere · Mentorer · Forfattere</span>
     <h1>Vi gjør realfagene <span class="gradient">tilgjengelige, forståelige og morsomme</span> å lære.</h1>
-    <p>
-      Realfagslaben samler forelesere, mentorer og forfattere med erfaring fra
-      matematikk, kjemi og flere realfag. Sammen viser vi hva realfag kan brukes til –
-      og hvorfor de er blant de mest spennende fagene vi har.
-    </p>
+    <div class="hero-knapper">
+      <a href="Realfagsassistenten/" class="knapp knapp-primær">
+        🧪 Realfagsassistenten
+      </a>
+      <a href="Om/" class="knapp knapp-sekundær">
+        Om Realfagslaben
+      </a>
+    </div>
     <div class="bånd"></div>
   </section>
 
@@ -523,47 +508,27 @@
       <a href="Om/index.html" class="kort kort-bla">
         <div class="ikon">🔬</div>
         <h3>Om Realfagslaben</h3>
-        <p>
-          Hvem vi er, hva vi brenner for, og hvorfor vi lager ressurser som gjør
-          realfagene lettere å forstå for flere.
-        </p>
-        <span class="pil">Les mer →</span>
       </a>
 
       <a href="Realfagsassistenten/" class="kort kort-gronn">
         <div class="ikon">🧪</div>
         <h3>Realfagsassistenten</h3>
-        <p>
-          Din digitale assistent i realfagene. Still spørsmål, få forklaringer og
-          utforsk temaer i matematikk, kjemi, fysikk og biologi.
-        </p>
-        <span class="pil">Åpne assistenten →</span>
       </a>
 
-      <a href="Realfagsportalen/index.html" class="kort kort-lilla">
+      <a href="Portalen/index.html" class="kort kort-lilla">
         <div class="ikon">🌐</div>
         <h3>Realfagsportalen</h3>
-        <p>
-          Din inngang til fagstoff, verktøy og oversikter – samlet på ett sted for
-          elever, studenter og lærere.
-        </p>
-        <span class="pil">Gå til portalen →</span>
       </a>
 
       <a href="Realfagssider/index.html" class="kort kort-bla">
         <div class="ikon">🧭</div>
         <h3>Realfagssider</h3>
-        <p>
-          Matematikk (R2, R1, …), fysikk, kjemi, biologi og mer. Fordyp deg i
-          fagene som interesserer deg.
-        </p>
-        <span class="pil">Utforsk fagene →</span>
       </a>
     </div>
   </section>
 
   <footer>
-    <p>© <span id="aar"></span> Realfagslaben · <a href="https://github.com/Realfagslaben">GitHub</a></p>
+    <p>© <span id="aar"></span> Realfagslaben</p>
   </footer>
 
   <script>
