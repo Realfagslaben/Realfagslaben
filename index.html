@@ -21,7 +21,6 @@
     --bg: #fbfcfe;
     --bg-alt: #f4f7fb;
     --border: #e6ebf2;
-    --hvit: #ffffff;
   }
 
   html, body {
@@ -35,6 +34,7 @@
     color: var(--tekst);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    cursor: none;
   }
 
   /* ---------- Bakgrunnsdekor ---------- */
@@ -67,25 +67,24 @@
     bottom: -140px; left: 20%;
   }
 
-  /* ---------- Klokke som følger musen ---------- */
+  /* ---------- Klokke som følger musen (litt mindre) ---------- */
   .klokke {
     position: fixed;
     top: 0;
     left: 0;
-    width: 170px;
-    height: 170px;
+    width: 140px;
+    height: 140px;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
     will-change: transform;
-    mix-blend-mode: multiply;
   }
 
   .klokke svg {
     width: 100%;
     height: 100%;
     overflow: visible;
-    filter: drop-shadow(0 6px 18px rgba(59, 130, 246, 0.18));
+    filter: drop-shadow(0 6px 16px rgba(59, 130, 246, 0.18));
   }
 
   /* ---------- Meny ---------- */
@@ -102,24 +101,26 @@
   .nav {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 16px 24px;
+    padding: 14px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
   }
 
   .logo-wrap {
     display: flex;
     flex-direction: column;
     line-height: 1.15;
+    text-decoration: none;
+    flex-shrink: 0;
   }
 
   .logo {
     font-family: Georgia, serif;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 700;
     letter-spacing: -0.01em;
-    text-decoration: none;
     background: linear-gradient(90deg, var(--bla-mork), var(--gronn-mork), var(--lilla-mork));
     -webkit-background-clip: text;
     background-clip: text;
@@ -127,26 +128,29 @@
   }
 
   .logo-undertittel {
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    letter-spacing: 0.02em;
     color: var(--muted);
-    margin-top: 2px;
+    margin-top: 1px;
   }
 
+  /* Knapper til VENSTRE – rett etter logoen */
   .nav-lenker {
     display: flex;
-    gap: 28px;
+    gap: 18px;
     list-style: none;
     align-items: center;
+    margin-right: auto;
+    margin-left: 12px;
   }
   .nav-lenker a {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 500;
     color: var(--tekst);
     text-decoration: none;
     transition: color 0.2s;
+    white-space: nowrap;
   }
   .nav-lenker a:hover { color: var(--bla-mork); }
   .nav-lenker a.cta {
@@ -166,32 +170,32 @@
   .hero {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 72px 24px 56px;
+    padding: 64px 24px 48px;
     text-align: center;
     position: relative;
   }
 
   .hero .eyebrow {
     display: inline-block;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--lilla-mork);
     background: #ede9fe;
-    padding: 7px 16px;
+    padding: 6px 14px;
     border-radius: 999px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .hero h1 {
     font-family: Georgia, serif;
-    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-size: clamp(1.8rem, 4.5vw, 2.9rem);
     font-weight: 700;
-    line-height: 1.12;
+    line-height: 1.14;
     letter-spacing: -0.02em;
-    margin-bottom: 20px;
-    max-width: 900px;
+    margin-bottom: 18px;
+    max-width: 860px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -205,10 +209,10 @@
   }
 
   .hero p {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: #4b5563;
-    margin: 0 auto 32px;
-    max-width: 680px;
+    margin: 0 auto 28px;
+    max-width: 640px;
   }
 
   .hero-knapper {
@@ -222,9 +226,9 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 14px 30px;
+    padding: 13px 28px;
     border-radius: 999px;
-    font-size: 0.98rem;
+    font-size: 0.96rem;
     font-weight: 600;
     text-decoration: none;
     transition: transform 0.15s, box-shadow 0.25s, background 0.25s, color 0.25s;
@@ -259,8 +263,8 @@
   /* ---------- Fargebånd ---------- */
   .bånd {
     height: 5px;
-    max-width: 220px;
-    margin: 44px auto 0;
+    max-width: 200px;
+    margin: 40px auto 0;
     border-radius: 999px;
     background: linear-gradient(90deg, var(--bla), var(--gronn), var(--lilla));
   }
@@ -269,39 +273,42 @@
   .utforsk {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 40px 24px 96px;
+    padding: 32px 24px 88px;
   }
 
   .utforsk-header {
     text-align: center;
-    margin-bottom: 48px;
+    margin-bottom: 44px;
   }
   .utforsk-header h2 {
     font-family: Georgia, serif;
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
     font-weight: 700;
     letter-spacing: -0.015em;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
-  .utforsk-header p { color: var(--muted); font-size: 1.02rem; }
+  .utforsk-header p {
+    color: var(--muted);
+    font-size: 1rem;
+  }
 
   .kort-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 22px;
   }
 
   .kort {
     background: #fff;
     border: 1px solid var(--border);
-    border-radius: 22px;
-    padding: 36px 32px;
+    border-radius: 20px;
+    padding: 32px 28px;
     text-decoration: none;
     color: var(--tekst);
     transition: transform 0.2s, box-shadow 0.3s, border-color 0.25s;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     position: relative;
     overflow: hidden;
   }
@@ -322,14 +329,14 @@
   .kort:hover::before { opacity: 1; }
 
   .kort .ikon {
-    font-size: 2rem;
-    width: 62px;
-    height: 62px;
+    font-size: 1.9rem;
+    width: 58px;
+    height: 58px;
     border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .kort.kort-bla .ikon { background: #dbeafe; }
   .kort.kort-gronn .ikon { background: #d1fae5; }
@@ -340,16 +347,16 @@
 
   .kort h3 {
     font-family: Georgia, serif;
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     font-weight: 700;
   }
-  .kort p { color: var(--muted); font-size: 0.97rem; line-height: 1.6; }
+  .kort p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
 
   .kort .pil {
     margin-top: auto;
-    padding-top: 16px;
+    padding-top: 14px;
     font-weight: 600;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -363,11 +370,11 @@
   /* ---------- Bunnnotat ---------- */
   footer {
     border-top: 1px solid var(--border);
-    padding: 44px 24px;
+    padding: 40px 24px;
     text-align: center;
     background: var(--bg-alt);
   }
-  footer p { color: var(--muted); font-size: 0.88rem; }
+  footer p { color: var(--muted); font-size: 0.86rem; }
   footer a {
     color: var(--lilla-mork);
     text-decoration: none;
@@ -377,18 +384,40 @@
 
   /* ---------- Mobil ---------- */
   @media (max-width: 900px) {
+    body { cursor: auto; }
     .klokke { display: none; }
 
-    .hero { padding: 48px 24px; }
+    .nav {
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 18px;
+    }
+    .nav-lenker {
+      margin-left: 0;
+      margin-right: 0;
+      gap: 14px;
+      flex-wrap: wrap;
+      order: 2;
+      width: 100%;
+      justify-content: flex-start;
+    }
+    .logo-wrap { order: 1; }
+    .nav-lenker a { font-size: 0.84rem; }
+    .nav-lenker a.cta { padding: 8px 16px; }
+
+    .hero { padding: 44px 20px 36px; }
     .kort-grid { grid-template-columns: 1fr; }
+    .kort { padding: 28px 24px; }
   }
 
-  @media (max-width: 600px) {
-    .nav-lenker { gap: 14px; }
-    .nav-lenker a { font-size: 0.82rem; }
-    .nav-lenker a.cta { padding: 8px 14px; }
+  @media (max-width: 480px) {
+    .logo { font-size: 1.05rem; }
     .logo-undertittel { font-size: 0.62rem; }
-    .kort { padding: 28px 24px; }
+    .nav-lenker { gap: 10px; }
+    .nav-lenker a { font-size: 0.8rem; }
+    .nav-lenker a.cta { padding: 7px 12px; font-size: 0.78rem; }
+    .hero-knapper { flex-direction: column; }
+    .knapp { justify-content: center; width: 100%; }
   }
 </style>
 </head>
@@ -457,7 +486,7 @@
     <nav class="nav">
       <a href="index.html" class="logo-wrap">
         <span class="logo">Realfagslaben</span>
-        <span class="logo-undertittel">En reise i realfagsverden</span>
+        <span class="logo-undertittel">Utforsk, eksperimenter og lær – realfag på en ny måte</span>
       </a>
       <ul class="nav-lenker">
         <li><a href="Realfagsassistenten/" class="cta">Realfagsassistenten</a></li>
@@ -491,7 +520,6 @@
   <section class="utforsk">
     <div class="utforsk-header">
       <h2>Utforsk Realfagslaben</h2>
-      <p>Utforsk, eksperimenter og lær – realfag på en ny måte</p>
     </div>
 
     <div class="kort-grid">
@@ -543,7 +571,8 @@
 
   <script>
     // =====================================================
-    // KLOKKE SOM FØLGER MUSEN – FLEKSIBEL ORGANISK FORM
+    // KLOKKE SOM FØLGER MUSEN
+    // – Blir ellipse når man drar, går mykt tilbake til sirkel
     // =====================================================
     const klokke = document.getElementById('klokke');
     const urskive = document.getElementById('urskive');
@@ -561,6 +590,13 @@
 
     const ANTALL_PUNKTER = 72;
     const BASIS_RADIUS = 92;
+
+    // Deformasjon (0 = sirkel, høyere = mer ellipse)
+    let deformasjon = 0;
+    let maalDeformasjon = 0;
+    // Retningen ellipsen strekkes i (radianer)
+    let deformRetning = 0;
+    let hastighetMyk = 0;
 
     let forskyvninger = new Array(ANTALL_PUNKTER).fill(0);
     let maalforskyvninger = new Array(ANTALL_PUNKTER).fill(0);
@@ -610,6 +646,7 @@
       return d + 'Z';
     }
 
+    // Subtil organisk støy
     function stoy(vinkel, tid) {
       return (
         Math.sin(vinkel * 2 + tid * 1.3) * 0.55 +
@@ -621,30 +658,45 @@
     function animer() {
       t += 0.016;
 
-      const smootheness = 0.12;
+      // Klokken glir mot musen
+      const smootheness = 0.14;
       klokkeX += (musX - klokkeX) * smootheness;
       klokkeY += (musY - klokkeY) * smootheness;
       klokke.style.transform = `translate(${klokkeX}px, ${klokkeY}px) translate(-50%, -50%)`;
 
+      // Musebevegelsens retning og hastighet
       const dx = musX - forrigeMusX;
       const dy = musY - forrigeMusY;
       const hastighet = Math.min(Math.sqrt(dx * dx + dy * dy), 40);
-      const retning = Math.atan2(dy, dx);
+      hastighetMyk += (hastighet - hastighetMyk) * 0.15;
+
+      // Mål-deformasjon:
+      // – hvis man drar (musepeker nede) og beveger seg: høy deformasjon
+      // – ellers: 0 (tilbake til sirkel)
+      if (dratt && hastighetMyk > 0.5) {
+        maalDeformasjon = Math.min(hastighetMyk * 0.55, 22);
+        deformRetning = Math.atan2(dy, dx);
+      } else {
+        maalDeformasjon = 0;
+      }
+
+      // Myk overgang – slik at den "puster" tilbake til sirkel
+      deformasjon += (maalDeformasjon - deformasjon) * 0.08;
 
       for (let i = 0; i < ANTALL_PUNKTER; i++) {
         const vinkel = (i / ANTALL_PUNKTER) * Math.PI * 2;
 
-        if (dratt && hastighet > 0.5) {
-          const samsvar = Math.cos(vinkel - retning);
-          const jevn = Math.sign(samsvar) * Math.pow(Math.abs(samsvar), 1.6);
-          const stoyVerdi = stoy(vinkel, t) * 0.9;
-          const deformasjon = (jevn * hastighet * 1.6) + stoyVerdi * hastighet * 0.15;
-          maalforskyvninger[i] = deformasjon;
-        } else {
-          const pust = stoy(vinkel, t) * 0.15;
-          maalforskyvninger[i] = pust;
+        // Ellipse-deformasjon: strekk i bevegelsesretningen,
+        // trykk inn på tvers (cos(2*(vinkel-retning)) gir +1 med, -1 mot)
+        let ellipse = 0;
+        if (deformasjon > 0.05) {
+          ellipse = Math.cos(2 * (vinkel - deformRetning)) * deformasjon;
         }
 
+        // Subtil pust så kanten lever selv når klokken står stille
+        const pust = stoy(vinkel, t) * 0.15;
+
+        maalforskyvninger[i] = ellipse + pust;
         forskyvninger[i] += (maalforskyvninger[i] - forskyvninger[i]) * 0.15;
       }
 
