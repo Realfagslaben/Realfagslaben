@@ -1,1 +1,433 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Realfagssider – Handout for 10. klasse og VGS</title>
+<meta name="description" content="Handout-prosjekt for 10. klasse og VGS-realfag: matematikk, fysikk, kjemi, biologi, geofag, teknologi og informatikk.">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  :root {
+    --bla: #2563eb;
+    --bla-mork: #1e40af;
+    --gronn: #16a34a;
+    --gronn-mork: #047857;
+    --lilla: #8b5cf6;
+    --lilla-mork: #6d28d9;
+    --tekst: #0f172a;
+    --muted: #6b7280;
+    --bg: #f4f7fb;
+    --border: #dbe4ee;
+  }
+
+  html, body {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--tekst);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    padding: 32px 20px 64px;
+  }
+
+  /* Bakgrunnsdekor */
+  .bakgrunn {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .boble {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.32;
+  }
+  .boble-1 { width: 480px; height: 480px; background: radial-gradient(circle, #93c5fd, transparent 70%); top: -120px; left: -100px; }
+  .boble-2 { width: 520px; height: 520px; background: radial-gradient(circle, #6ee7b7, transparent 70%); top: 35%; right: -160px; }
+  .boble-3 { width: 460px; height: 460px; background: radial-gradient(circle, #c4b5fd, transparent 70%); bottom: -140px; left: 20%; }
+
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* Tilbake-lenke */
+  .tilbake {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 28px;
+    color: var(--gronn-mork);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: gap 0.2s, color 0.2s;
+  }
+  .tilbake:hover { gap: 10px; color: var(--bla-mork); }
+
+  /* Hero */
+  .hero { margin-bottom: 48px; text-align: center; }
+
+  .hero .eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--lilla-mork);
+    background: #ede9fe;
+    padding: 7px 16px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 .gradient {
+    background: linear-gradient(90deg, var(--bla-mork), var(--gronn-mork), var(--lilla-mork));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-style: italic;
+  }
+
+  .hero p {
+    font-size: 1.02rem;
+    color: #4b5563;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* Seksjon */
+  section { margin-bottom: 64px; }
+
+  .seksjon-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .seksjon-header h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+
+  .seksjon-header .prikk {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  .seksjon-header .prikk.bla { background: var(--bla); }
+  .seksjon-header .prikk.gronn { background: var(--gronn); }
+
+  .seksjon-header .meta {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 500;
+    margin-left: auto;
+  }
+
+  .seksjon-beskrivelse {
+    color: var(--muted);
+    font-size: 0.97rem;
+    margin-bottom: 24px;
+    margin-top: 12px;
+  }
+
+  /* Knappe-grid – 10. klasse */
+  .knappe-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+
+  .knapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 0.98rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    min-height: 62px;
+  }
+  .knapp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+    filter: brightness(1.06);
+  }
+
+  /* Farger – 10. klasse */
+  .k-algebra         { background: #2563EB; }
+  .k-polynomer       { background: #16A34A; }
+  .k-ligningssett    { background: #D97706; }
+  .k-funksjoner      { background: #EF4444; }
+  .k-lineare         { background: #0D9488; }
+  .k-eksponential    { background: #1E293B; }
+  .k-programmering   { background: #9333EA; }
+  .k-modellering     { background: #22C55E; }
+  .k-okonomi         { background: #B91C1C; }
+  .k-statistikk      { background: #0E7490; }
+  .k-datamodellering { background: #6B7280; }
+  .k-geometri        { background: #F59E0B; }
+
+  /* VGS-kort-grid */
+  .vgs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 8px;
+  }
+
+  .card {
+    background-color: #ffffff;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    transition: transform 0.2s, box-shadow 0.25s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(15, 23, 42, 0.10);
+  }
+
+  .card h3 {
+    font-size: 1.25rem;
+    font-family: Georgia, serif;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--tekst);
+  }
+
+  .course {
+    display: block;
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 12px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    cursor: pointer;
+  }
+  .course:last-child { margin-bottom: 0; }
+  .course:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    filter: brightness(1.06);
+  }
+
+  /* Farger – VGS */
+  .blue   { background-color: #1f6fd6; }
+  .green  { background-color: #1a9e5c; }
+  .orange { background-color: #d97b00; }
+  .purple { background-color: #8e44ad; }
+  .red    { background-color: #c0392b; }
+  .teal   { background-color: #1a9e8a; }
+  .dark   { background-color: #2c3e50; }
+  .brown  { background-color: #8b5a2b; }
+  .pink   { background-color: #c2185b; }
+  .indigo { background-color: #3f51b5; }
+  .cyan   { background-color: #0097a7; }
+
+  /* Footer */
+  footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  footer a {
+    color: var(--gronn-mork);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  footer a:hover { text-decoration: underline; }
+
+  /* Responsivt */
+  @media (max-width: 1024px) {
+    .knappe-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .knappe-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .hero h1 { font-size: 1.6rem; }
+    .knapp { padding: 16px 12px; font-size: 0.9rem; min-height: 56px; }
+    .seksjon-header .meta { margin-left: 0; width: 100%; }
+    .card { padding: 22px 18px; }
+    .card h3 { font-size: 1.1rem; }
+    .course { font-size: 0.95rem; padding: 12px 14px; }
+  }
+  @media (max-width: 420px) {
+    .knappe-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Bakgrunnsdekor -->
+  <div class="bakgrunn">
+    <div class="boble boble-1"></div>
+    <div class="boble boble-2"></div>
+    <div class="boble boble-3"></div>
+  </div>
+
+  <div class="container">
+
+    <a href="../" class="tilbake">← Tilbake til Realfagslaben</a>
+
+    <!-- Hero -->
+    <div class="hero">
+      <span class="eyebrow">Handout-prosjekt · Matematikk og realfag</span>
+      <h1>Realfagssider – <span class="gradient">handout for 10. klasse og VGS</span></h1>
+      <p>
+        Prosjektmateriell og oppgaver samlet på ett sted. Velg nivået ditt og
+        temaet du vil jobbe med.
+      </p>
+    </div>
+
+    <!-- ==================== 10. KLASSE ==================== -->
+    <section id="tiende">
+      <div class="seksjon-header">
+        <h2><span class="prikk bla"></span>Handout for 10. klasse</h2>
+        <span class="meta">Matematikk · 12 temaer</span>
+      </div>
+      <p class="seksjon-beskrivelse">
+        Prosjektmateriell og oppgaver for 10. trinn. Velg temaet du vil jobbe med.
+      </p>
+
+      <div class="knappe-grid">
+        <a href="pdf/Algebra-10Trinn.pdf" target="_blank" rel="noopener" class="knapp k-algebra">Algebra</a>
+        <a href="pdf/Polynomer-10Trinn.pdf" target="_blank" rel="noopener" class="knapp k-polynomer">Polynomer</a>
+        <a href="pdf/Ligningssett-10Trinn.pdf" target="_blank" rel="noopener" class="knapp k-ligningssett">Ligningssett</a>
+        <a href="pdf/Funksjoner-10Trinn.pdf" target="_blank" rel="noopener" class="knapp k-funksjoner">Funksjoner</a>
+        <a href="pdf/Linearefunksjoner-10Trinn.pdf" target="_blank" rel="noopener" class="knapp k-lineare">Lineære funksjoner</a>
+        <a href="pdf/Eksponentialfunksjoner-10Trinn.pdf" target="_blank" rel="noopener" class="knapp k-eksponential">Eksponentialfunksjoner</a>
+        <a href="pdf/Programmering-10Trinn.pdf" target="_blank" rel="noopener" class="knapp k-programmering">Programmering</a>
+        <a href="pdf/Modellering-10Trinn.pdf" target="_blank" rel="noopener" class="knapp k-modellering">Modellering</a>
+        <a href="pdf/Økonomi-10Trinn.pdf" target="_blank" rel="noopener" class="knapp k-okonomi">Økonomi</a>
+        <a href="pdf/Statistikk-10Trinn.pdf" target="_blank" rel="noopener" class="knapp k-statistikk">Statistikk</a>
+        <a href="pdf/Datamodellering-10Trinn.pdf" target="_blank" rel="noopener" class="knapp k-datamodellering">Datamodellering</a>
+        <a href="pdf/Geometri-10Trinn.pdf" target="_blank" rel="noopener" class="knapp k-geometri">Geometri</a>
+      </div>
+    </section>
+
+    <!-- ==================== VGS ==================== -->
+    <section id="vgs">
+      <div class="seksjon-header">
+        <h2><span class="prikk gronn"></span>Handout for VGS-realfag</h2>
+        <span class="meta">Matematikk · Realfag · Teknologi</span>
+      </div>
+      <p class="seksjon-beskrivelse">
+        Handout for matematikkfagene og realfagene på videregående skole. Velg faget
+        du vil fordype deg i.
+      </p>
+
+      <div class="vgs-grid">
+
+        <!-- Matematikk Vg1 -->
+        <div class="card">
+          <h3>Matematikk Vg1</h3>
+          <a href="1P/" class="course blue">Matematikk 1P</a>
+          <a href="1T/" class="course green">Matematikk 1T</a>
+          <a href="1P-Y/" class="course orange">Matematikk 1P-Y</a>
+        </div>
+
+        <!-- Realfag -->
+        <div class="card">
+          <h3>Realfag</h3>
+          <a href="R1/" class="course purple">Matematikk R1</a>
+          <a href="R2/" class="course red">Matematikk R2</a>
+        </div>
+
+        <!-- Samfunnsfaglig -->
+        <div class="card">
+          <h3>Samfunnsfaglig</h3>
+          <a href="S1/" class="course teal">Matematikk S1</a>
+          <a href="S2/" class="course dark">Matematikk S2</a>
+        </div>
+
+        <!-- Fysikk og kjemi -->
+        <div class="card">
+          <h3>Fysikk og kjemi</h3>
+          <a href="Fysikk1/" class="course indigo">Fysikk 1</a>
+          <a href="Fysikk2/" class="course indigo">Fysikk 2</a>
+          <a href="Kjemi1/" class="course brown">Kjemi 1</a>
+          <a href="Kjemi2/" class="course brown">Kjemi 2</a>
+        </div>
+
+        <!-- Biologi og geofag -->
+        <div class="card">
+          <h3>Biologi og geofag</h3>
+          <a href="Biologi1/" class="course green">Biologi 1</a>
+          <a href="Biologi2/" class="course green">Biologi 2</a>
+          <a href="Geofag1/" class="course orange">Geofag 1</a>
+          <a href="Geofag2/" class="course orange">Geofag 2</a>
+        </div>
+
+        <!-- Teknologi og informatikk -->
+        <div class="card">
+          <h3>Teknologi og informatikk</h3>
+          <a href="Teknologi1/" class="course cyan">Teknologi og forskningslære 1</a>
+          <a href="Teknologi2/" class="course cyan">Teknologi og forskningslære 2</a>
+          <a href="IT1/" class="course dark">Informasjonsteknologi 1</a>
+          <a href="IT2/" class="course dark">Informasjonsteknologi 2</a>
+          <a href="Programmering1/" class="course pink">Programmering og modellering 1</a>
+          <a href="Programmering2/" class="course pink">Programmering og modellering 2</a>
+        </div>
+
+        <!-- Naturfag Vg1 -->
+        <div class="card">
+          <h3>Naturfag Vg1</h3>
+          <a href="Naturfag/" class="course blue">Naturfag</a>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      <p>© <span id="aar"></span> Realfagslaben · <a href="https://github.com/Realfagslaben">GitHub</a></p>
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById('aar').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
