@@ -1,41 +1,668 @@
+
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Realfagslaben</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Realfagslaben – Realfag på en ny måte</title>
+<meta name="description" content="Realfagslaben – forelesere, mentorer og forfattere som gjør matematikk, kjemi og realfag tilgjengelige, forståelige og morsomme å lære.">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bla: #3b82f6;
+    --bla-mork: #1e40af;
+    --gronn: #10b981;
+    --gronn-mork: #047857;
+    --lilla: #8b5cf6;
+    --lilla-mork: #6d28d9;
+    --tekst: #1a1a1a;
+    --muted: #6b7280;
+    --bg: #fbfcfe;
+    --bg-alt: #f4f7fb;
+    --border: #e6ebf2;
+    --hvit: #ffffff;
+  }
+
+  html, body {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--tekst);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- Bakgrunnsdekor ---------- */
+  .bakgrunn {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .boble {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.35;
+  }
+  .boble-1 {
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, #93c5fd, transparent 70%);
+    top: -120px; left: -100px;
+  }
+  .boble-2 {
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, #6ee7b7, transparent 70%);
+    top: 30%; right: -160px;
+  }
+  .boble-3 {
+    width: 460px; height: 460px;
+    background: radial-gradient(circle, #c4b5fd, transparent 70%);
+    bottom: -140px; left: 20%;
+  }
+
+  /* ---------- Klokke som følger musen ---------- */
+  .klokke {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 170px;
+    height: 170px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+    mix-blend-mode: multiply;
+  }
+
+  .klokke svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(0 6px 18px rgba(59, 130, 246, 0.18));
+  }
+
+  /* ---------- Meny ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    background: rgba(251, 252, 254, 0.85);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+  }
+
+  .nav {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    background: linear-gradient(90deg, var(--bla-mork), var(--gronn-mork), var(--lilla-mork));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .nav-lenker {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-lenker a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--tekst);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-lenker a:hover { color: var(--bla-mork); }
+  .nav-lenker a.cta {
+    color: #fff;
+    font-weight: 600;
+    background: linear-gradient(90deg, var(--bla), var(--gronn), var(--lilla));
+    padding: 9px 18px;
+    border-radius: 999px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-lenker a.cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.28);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 72px 24px 56px;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero .eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--lilla-mork);
+    background: #ede9fe;
+    padding: 7px 16px;
+    border-radius: 999px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero h1 .gradient {
+    background: linear-gradient(90deg, var(--bla-mork), var(--gronn-mork), var(--lilla-mork));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-style: italic;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: #4b5563;
+    margin: 0 auto 32px;
+    max-width: 680px;
+  }
+
+  .hero-knapper {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .knapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 30px;
+    border-radius: 999px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.25s, background 0.25s, color 0.25s;
+    border: 1px solid transparent;
+  }
+
+  .knapp-primær {
+    color: #fff;
+    background: linear-gradient(90deg, var(--bla), var(--gronn), var(--lilla));
+    background-size: 200% 100%;
+    background-position: 0% 50%;
+    transition: background-position 0.5s, transform 0.2s, box-shadow 0.25s;
+  }
+  .knapp-primær:hover {
+    background-position: 100% 50%;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(139, 92, 246, 0.28);
+  }
+
+  .knapp-sekundær {
+    color: var(--bla-mork);
+    background: #fff;
+    border-color: var(--border);
+  }
+  .knapp-sekundær:hover {
+    border-color: var(--bla);
+    color: var(--bla);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(59, 130, 246, 0.15);
+  }
+
+  /* ---------- Fargebånd ---------- */
+  .bånd {
+    height: 5px;
+    max-width: 220px;
+    margin: 44px auto 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--bla), var(--gronn), var(--lilla));
+  }
+
+  /* ---------- Kort-seksjon ---------- */
+  .utforsk {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 96px;
+  }
+
+  .utforsk-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .utforsk-header h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-bottom: 10px;
+  }
+  .utforsk-header p { color: var(--muted); font-size: 1.02rem; }
+
+  .kort-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .kort {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 36px 32px;
+    text-decoration: none;
+    color: var(--tekst);
+    transition: transform 0.2s, box-shadow 0.3s, border-color 0.25s;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kort::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--bla), var(--gronn), var(--lilla));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .kort:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px rgba(30, 64, 175, 0.10);
+    border-color: #c7d2fe;
+  }
+  .kort:hover::before { opacity: 1; }
+
+  .kort .ikon {
+    font-size: 2rem;
+    width: 62px;
+    height: 62px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .kort.kort-bla .ikon { background: #dbeafe; }
+  .kort.kort-gronn .ikon { background: #d1fae5; }
+  .kort.kort-lilla .ikon { background: #ede9fe; }
+  .kort.kort-bla:hover { border-color: #bfdbfe; }
+  .kort.kort-gronn:hover { border-color: #a7f3d0; }
+  .kort.kort-lilla:hover { border-color: #ddd6fe; }
+
+  .kort h3 {
+    font-family: Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+  .kort p { color: var(--muted); font-size: 0.97rem; line-height: 1.6; }
+
+  .kort .pil {
+    margin-top: auto;
+    padding-top: 16px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s;
+  }
+  .kort.kort-bla .pil { color: var(--bla-mork); }
+  .kort.kort-gronn .pil { color: var(--gronn-mork); }
+  .kort.kort-lilla .pil { color: var(--lilla-mork); }
+  .kort:hover .pil { gap: 12px; }
+
+  /* ---------- Bunnnotat ---------- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 44px 24px;
+    text-align: center;
+    background: var(--bg-alt);
+  }
+  footer p { color: var(--muted); font-size: 0.88rem; }
+  footer a {
+    color: var(--lilla-mork);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  footer a:hover { text-decoration: underline; }
+
+  /* ---------- Mobil ---------- */
+  @media (max-width: 900px) {
+    .klokke { display: none; }
+
+    .hero { padding: 48px 24px; }
+    .kort-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-lenker { gap: 14px; }
+    .nav-lenker a { font-size: 0.82rem; }
+    .nav-lenker a.cta { padding: 8px 14px; }
+    .kort { padding: 28px 24px; }
+  }
+</style>
 </head>
 <body>
 
-  <header class="hero">
-    <h1>Realfagslaben</h1>
-    <p>Utforsk, eksperimenter og lær – realfag på en ny måte.</p>
+  <!-- Bakgrunnsdekor -->
+  <div class="bakgrunn">
+    <div class="boble boble-1"></div>
+    <div class="boble boble-2"></div>
+    <div class="boble boble-3"></div>
+  </div>
+
+  <!-- Klokke som følger musen -->
+  <div class="klokke" id="klokke">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="skiveGrad" cx="50%" cy="50%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.96"/>
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0.68"/>
+        </radialGradient>
+        <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#3b82f6"/>
+          <stop offset="50%" stop-color="#10b981"/>
+          <stop offset="100%" stop-color="#8b5cf6"/>
+        </linearGradient>
+      </defs>
+
+      <path id="urskive"
+            d="M 100 8 A 92 92 0 1 1 99.9 8 Z"
+            fill="url(#skiveGrad)"
+            stroke="url(#ringGrad)"
+            stroke-width="2"
+            stroke-opacity="0.55"/>
+
+      <g id="tall" font-family="Georgia, serif" font-size="12" text-anchor="middle" font-weight="600">
+        <text x="100" y="26" fill="#1e40af">XII</text>
+        <text x="137" y="35" fill="#10b981">I</text>
+        <text x="165" y="60" fill="#6d28d9">II</text>
+        <text x="174" y="105" fill="#3b82f6">III</text>
+        <text x="165" y="148" fill="#047857">IV</text>
+        <text x="137" y="173" fill="#8b5cf6">V</text>
+        <text x="100" y="182" fill="#1e40af">VI</text>
+        <text x="63" y="173" fill="#10b981">VII</text>
+        <text x="35" y="148" fill="#6d28d9">VIII</text>
+        <text x="26" y="105" fill="#3b82f6">IX</text>
+        <text x="35" y="60" fill="#047857">X</text>
+        <text x="63" y="35" fill="#8b5cf6">XI</text>
+      </g>
+
+      <g id="visere">
+        <line id="timeviser" x1="100" y1="100" x2="100" y2="55"
+              stroke="#1e40af" stroke-width="3.5" stroke-linecap="round"/>
+        <line id="minuttviser" x1="100" y1="100" x2="100" y2="38"
+              stroke="#047857" stroke-width="2" stroke-linecap="round" stroke-opacity="0.9"/>
+        <line id="sekundviser" x1="100" y1="110" x2="100" y2="28"
+              stroke="#8b5cf6" stroke-width="1.2" stroke-linecap="round"/>
+      </g>
+
+      <circle cx="100" cy="100" r="4" fill="#1e40af"/>
+      <circle cx="100" cy="100" r="1.8" fill="#10b981"/>
+    </svg>
+  </div>
+
+  <!-- Meny -->
+  <header>
+    <nav class="nav">
+      <a href="index.html" class="logo">Realfagslaben</a>
+      <ul class="nav-lenker">
+        <li><a href="Realfagsassistenten/" class="cta">Realfagsassistenten</a></li>
+        <li><a href="Om/">Om</a></li>
+        <li><a href="Portalen/">Portalen</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="cards">
-    <a href="Om/index.html" class="card">
-      <span class="icon">🔬</span>
-      <h2>Om Realfagslaben</h2>
-      <p>Hvem vi er og hva vi gjør</p>
-    </a>
+  <!-- Hero -->
+  <section class="hero">
+    <span class="eyebrow">Forelesere · Mentorer · Forfattere</span>
+    <h1>Vi gjør realfagene <span class="gradient">tilgjengelige, forståelige og morsomme</span> å lære.</h1>
+    <p>
+      Realfagslaben samler forelesere, mentorer og forfattere med erfaring fra
+      matematikk, kjemi og flere realfag. Sammen viser vi hva realfag kan brukes til –
+      og hvorfor de er blant de mest spennende fagene vi har.
+    </p>
+    <div class="hero-knapper">
+      <a href="Realfagsassistenten/" class="knapp knapp-primær">
+        🧪 Åpne Realfagsassistenten
+      </a>
+      <a href="Om/" class="knapp knapp-sekundær">
+        Om Realfagslaben
+      </a>
+    </div>
+    <div class="bånd"></div>
+  </section>
 
-    <a href="Portalen/index.html" class="card">
-      <span class="icon">🌐</span>
-      <h2>Realfagsportalen</h2>
-      <p>Din inngang til fagstoff og verktøy</p>
-    </a>
+  <!-- Kort -->
+  <section class="utforsk">
+    <div class="utforsk-header">
+      <h2>Utforsk Realfagslaben</h2>
+      <p>Velg en inngang – vi har gjort det enkelt å komme i gang</p>
+    </div>
 
-    <a href="Realfagssider/index.html" class="card">
-      <span class="icon">🧭</span>
-      <h2>Realfagssider</h2>
-      <p>Matematikk (R2, R1, ...), Fysikk, Kjemi, Biologi og mer</p>
-    </a>
-  </main>
+    <div class="kort-grid">
+      <a href="Om/index.html" class="kort kort-bla">
+        <div class="ikon">🔬</div>
+        <h3>Om Realfagslaben</h3>
+        <p>
+          Hvem vi er, hva vi brenner for, og hvorfor vi lager ressurser som gjør
+          realfagene lettere å forstå for flere.
+        </p>
+        <span class="pil">Les mer →</span>
+      </a>
+
+      <a href="Realfagsassistenten/" class="kort kort-gronn">
+        <div class="ikon">🧪</div>
+        <h3>Realfagsassistenten</h3>
+        <p>
+          Din digitale assistent i realfagene. Still spørsmål, få forklaringer og
+          utforsk temaer i matematikk, kjemi, fysikk og biologi.
+        </p>
+        <span class="pil">Åpne assistenten →</span>
+      </a>
+
+      <a href="Portalen/index.html" class="kort kort-lilla">
+        <div class="ikon">🌐</div>
+        <h3>Realfagsportalen</h3>
+        <p>
+          Din inngang til fagstoff, verktøy og oversikter – samlet på ett sted for
+          elever, studenter og lærere.
+        </p>
+        <span class="pil">Gå til portalen →</span>
+      </a>
+
+      <a href="Realfagssider/index.html" class="kort kort-bla">
+        <div class="ikon">🧭</div>
+        <h3>Realfagssider</h3>
+        <p>
+          Matematikk (R2, R1, …), fysikk, kjemi, biologi og mer. Fordyp deg i
+          fagene som interesserer deg.
+        </p>
+        <span class="pil">Utforsk fagene →</span>
+      </a>
+    </div>
+  </section>
 
   <footer>
-    <p>© 2025 Realfagslaben</p>
+    <p>© <span id="aar"></span> Realfagslaben · <a href="https://github.com/Realfagslaben">GitHub</a></p>
   </footer>
+
+  <script>
+    // =====================================================
+    // KLOKKE SOM FØLGER MUSEN – FLEKSIBEL ORGANISK FORM
+    // =====================================================
+    const klokke = document.getElementById('klokke');
+    const urskive = document.getElementById('urskive');
+    const timeviser = document.getElementById('timeviser');
+    const minuttviser = document.getElementById('minuttviser');
+    const sekundviser = document.getElementById('sekundviser');
+
+    let musX = window.innerWidth / 2;
+    let musY = window.innerHeight / 2;
+    let forrigeMusX = musX;
+    let forrigeMusY = musY;
+    let klokkeX = musX;
+    let klokkeY = musY;
+    let dratt = false;
+
+    const ANTALL_PUNKTER = 72;
+    const BASIS_RADIUS = 92;
+
+    let forskyvninger = new Array(ANTALL_PUNKTER).fill(0);
+    let maalforskyvninger = new Array(ANTALL_PUNKTER).fill(0);
+
+    let t = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      forrigeMusX = musX;
+      forrigeMusY = musY;
+      musX = e.clientX;
+      musY = e.clientY;
+    });
+
+    document.addEventListener('mousedown', () => { dratt = true; });
+    document.addEventListener('mouseup', () => { dratt = false; });
+
+    document.addEventListener('touchstart', () => { dratt = true; }, { passive: true });
+    document.addEventListener('touchend', () => { dratt = false; }, { passive: true });
+
+    document.addEventListener('touchmove', (e) => {
+      if (e.touches[0]) {
+        forrigeMusX = musX;
+        forrigeMusY = musY;
+        musX = e.touches[0].clientX;
+        musY = e.touches[0].clientY;
+        dratt = true;
+      }
+    }, { passive: true });
+
+    function byggJevnPath(punkter) {
+      if (punkter.length < 3) return '';
+      const n = punkter.length;
+      let d = 'M ' + punkter[0].x.toFixed(2) + ' ' + punkter[0].y.toFixed(2) + ' ';
+      for (let i = 0; i < n; i++) {
+        const p0 = punkter[(i - 1 + n) % n];
+        const p1 = punkter[i];
+        const p2 = punkter[(i + 1) % n];
+        const p3 = punkter[(i + 2) % n];
+        const cp1x = p1.x + (p2.x - p0.x) / 6;
+        const cp1y = p1.y + (p2.y - p0.y) / 6;
+        const cp2x = p2.x - (p3.x - p1.x) / 6;
+        const cp2y = p2.y - (p3.y - p1.y) / 6;
+        d += 'C ' + cp1x.toFixed(2) + ' ' + cp1y.toFixed(2) + ', ' +
+             cp2x.toFixed(2) + ' ' + cp2y.toFixed(2) + ', ' +
+             p2.x.toFixed(2) + ' ' + p2.y.toFixed(2) + ' ';
+      }
+      return d + 'Z';
+    }
+
+    function stoy(vinkel, tid) {
+      return (
+        Math.sin(vinkel * 2 + tid * 1.3) * 0.55 +
+        Math.sin(vinkel * 3 + tid * 0.9) * 0.30 +
+        Math.sin(vinkel * 5 + tid * 0.6) * 0.15
+      );
+    }
+
+    function animer() {
+      t += 0.016;
+
+      const smootheness = 0.12;
+      klokkeX += (musX - klokkeX) * smootheness;
+      klokkeY += (musY - klokkeY) * smootheness;
+      klokke.style.transform = `translate(${klokkeX}px, ${klokkeY}px) translate(-50%, -50%)`;
+
+      const dx = musX - forrigeMusX;
+      const dy = musY - forrigeMusY;
+      const hastighet = Math.min(Math.sqrt(dx * dx + dy * dy), 40);
+      const retning = Math.atan2(dy, dx);
+
+      for (let i = 0; i < ANTALL_PUNKTER; i++) {
+        const vinkel = (i / ANTALL_PUNKTER) * Math.PI * 2;
+
+        if (dratt && hastighet > 0.5) {
+          const samsvar = Math.cos(vinkel - retning);
+          const jevn = Math.sign(samsvar) * Math.pow(Math.abs(samsvar), 1.6);
+          const stoyVerdi = stoy(vinkel, t) * 0.9;
+          const deformasjon = (jevn * hastighet * 1.6) + stoyVerdi * hastighet * 0.15;
+          maalforskyvninger[i] = deformasjon;
+        } else {
+          const pust = stoy(vinkel, t) * 0.15;
+          maalforskyvninger[i] = pust;
+        }
+
+        forskyvninger[i] += (maalforskyvninger[i] - forskyvninger[i]) * 0.15;
+      }
+
+      const punkter = [];
+      for (let i = 0; i < ANTALL_PUNKTER; i++) {
+        const vinkel = (i / ANTALL_PUNKTER) * Math.PI * 2 - Math.PI / 2;
+        const radius = BASIS_RADIUS + forskyvninger[i];
+        punkter.push({
+          x: 100 + Math.cos(vinkel) * radius,
+          y: 100 + Math.sin(vinkel) * radius
+        });
+      }
+
+      urskive.setAttribute('d', byggJevnPath(punkter));
+      requestAnimationFrame(animer);
+    }
+    animer();
+
+    function oppdaterKlokke() {
+      const naa = new Date();
+      const timer = naa.getHours() % 12;
+      const minutter = naa.getMinutes();
+      const sekunder = naa.getSeconds();
+
+      const timeVinkel = (timer * 30) + (minutter * 0.5);
+      const minuttVinkel = (minutter * 6) + (sekunder * 0.1);
+      const sekundVinkel = sekunder * 6;
+
+      timeviser.setAttribute('transform', `rotate(${timeVinkel} 100 100)`);
+      minuttviser.setAttribute('transform', `rotate(${minuttVinkel} 100 100)`);
+      sekundviser.setAttribute('transform', `rotate(${sekundVinkel} 100 100)`);
+    }
+    setInterval(oppdaterKlokke, 1000);
+    oppdaterKlokke();
+
+    document.getElementById('aar').textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
