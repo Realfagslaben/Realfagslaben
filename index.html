@@ -67,7 +67,7 @@
     bottom: -140px; left: 20%;
   }
 
-  /* ---------- Klokke som følger musen (litt mindre) ---------- */
+  /* ---------- Klokke som følger musen ---------- */
   .klokke {
     position: fixed;
     top: 0;
@@ -105,15 +105,39 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
   }
 
+  /* Logo med mikroskop */
   .logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-ikon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    background: linear-gradient(135deg, #dbeafe, #d1fae5 55%, #ede9fe);
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+  .logo-wrap:hover .logo-ikon {
+    transform: rotate(-6deg) scale(1.06);
+  }
+
+  .logo-tekst {
     display: flex;
     flex-direction: column;
     line-height: 1.15;
-    text-decoration: none;
-    flex-shrink: 0;
   }
 
   .logo {
@@ -135,14 +159,13 @@
     margin-top: 1px;
   }
 
-  /* Knapper til VENSTRE – rett etter logoen */
+  /* Knapper til HØYRE */
   .nav-lenker {
     display: flex;
-    gap: 18px;
+    gap: 16px;
     list-style: none;
     align-items: center;
-    margin-right: auto;
-    margin-left: 12px;
+    flex-shrink: 0;
   }
   .nav-lenker a {
     font-size: 0.88rem;
@@ -392,18 +415,15 @@
       gap: 10px;
       padding: 12px 18px;
     }
+    .logo-wrap { order: 1; flex: 1 1 auto; }
     .nav-lenker {
-      margin-left: 0;
-      margin-right: 0;
-      gap: 14px;
-      flex-wrap: wrap;
       order: 2;
-      width: 100%;
-      justify-content: flex-start;
+      flex: 1 1 auto;
+      justify-content: flex-end;
+      gap: 12px;
     }
-    .logo-wrap { order: 1; }
-    .nav-lenker a { font-size: 0.84rem; }
-    .nav-lenker a.cta { padding: 8px 16px; }
+    .nav-lenker a { font-size: 0.82rem; }
+    .nav-lenker a.cta { padding: 8px 14px; font-size: 0.8rem; }
 
     .hero { padding: 44px 20px 36px; }
     .kort-grid { grid-template-columns: 1fr; }
@@ -411,11 +431,13 @@
   }
 
   @media (max-width: 480px) {
-    .logo { font-size: 1.05rem; }
-    .logo-undertittel { font-size: 0.62rem; }
-    .nav-lenker { gap: 10px; }
-    .nav-lenker a { font-size: 0.8rem; }
-    .nav-lenker a.cta { padding: 7px 12px; font-size: 0.78rem; }
+    .logo { font-size: 1rem; }
+    .logo-undertittel { font-size: 0.6rem; }
+    .logo-ikon { width: 34px; height: 34px; font-size: 1.15rem; }
+    .nav { padding: 10px 14px; gap: 8px; }
+    .nav-lenker { gap: 8px; }
+    .nav-lenker a { font-size: 0.76rem; }
+    .nav-lenker a.cta { padding: 6px 11px; font-size: 0.74rem; }
     .hero-knapper { flex-direction: column; }
     .knapp { justify-content: center; width: 100%; }
   }
@@ -485,8 +507,11 @@
   <header>
     <nav class="nav">
       <a href="index.html" class="logo-wrap">
-        <span class="logo">Realfagslaben</span>
-        <span class="logo-undertittel">Utforsk, eksperimenter og lær – realfag på en ny måte</span>
+        <span class="logo-ikon" aria-hidden="true">🔬</span>
+        <span class="logo-tekst">
+          <span class="logo">Realfagslaben</span>
+          <span class="logo-undertittel">En reise i realfagsverden</span>
+        </span>
       </a>
       <ul class="nav-lenker">
         <li><a href="Realfagsassistenten/" class="cta">Realfagsassistenten</a></li>
@@ -520,6 +545,7 @@
   <section class="utforsk">
     <div class="utforsk-header">
       <h2>Utforsk Realfagslaben</h2>
+      <p>Utforsk, eksperimenter og lær – realfag på en ny måte</p>
     </div>
 
     <div class="kort-grid">
@@ -591,10 +617,8 @@
     const ANTALL_PUNKTER = 72;
     const BASIS_RADIUS = 92;
 
-    // Deformasjon (0 = sirkel, høyere = mer ellipse)
     let deformasjon = 0;
     let maalDeformasjon = 0;
-    // Retningen ellipsen strekkes i (radianer)
     let deformRetning = 0;
     let hastighetMyk = 0;
 
@@ -646,7 +670,6 @@
       return d + 'Z';
     }
 
-    // Subtil organisk støy
     function stoy(vinkel, tid) {
       return (
         Math.sin(vinkel * 2 + tid * 1.3) * 0.55 +
@@ -658,21 +681,16 @@
     function animer() {
       t += 0.016;
 
-      // Klokken glir mot musen
       const smootheness = 0.14;
       klokkeX += (musX - klokkeX) * smootheness;
       klokkeY += (musY - klokkeY) * smootheness;
       klokke.style.transform = `translate(${klokkeX}px, ${klokkeY}px) translate(-50%, -50%)`;
 
-      // Musebevegelsens retning og hastighet
       const dx = musX - forrigeMusX;
       const dy = musY - forrigeMusY;
       const hastighet = Math.min(Math.sqrt(dx * dx + dy * dy), 40);
       hastighetMyk += (hastighet - hastighetMyk) * 0.15;
 
-      // Mål-deformasjon:
-      // – hvis man drar (musepeker nede) og beveger seg: høy deformasjon
-      // – ellers: 0 (tilbake til sirkel)
       if (dratt && hastighetMyk > 0.5) {
         maalDeformasjon = Math.min(hastighetMyk * 0.55, 22);
         deformRetning = Math.atan2(dy, dx);
@@ -680,20 +698,16 @@
         maalDeformasjon = 0;
       }
 
-      // Myk overgang – slik at den "puster" tilbake til sirkel
       deformasjon += (maalDeformasjon - deformasjon) * 0.08;
 
       for (let i = 0; i < ANTALL_PUNKTER; i++) {
         const vinkel = (i / ANTALL_PUNKTER) * Math.PI * 2;
 
-        // Ellipse-deformasjon: strekk i bevegelsesretningen,
-        // trykk inn på tvers (cos(2*(vinkel-retning)) gir +1 med, -1 mot)
         let ellipse = 0;
         if (deformasjon > 0.05) {
           ellipse = Math.cos(2 * (vinkel - deformRetning)) * deformasjon;
         }
 
-        // Subtil pust så kanten lever selv når klokken står stille
         const pust = stoy(vinkel, t) * 0.15;
 
         maalforskyvninger[i] = ellipse + pust;
