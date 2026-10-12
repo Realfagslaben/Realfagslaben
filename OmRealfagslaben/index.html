@@ -1,1 +1,233 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Om Realfagslaben</title>
+  <meta
+    name="description"
+    content="Realfagslaben består av forelesere, mentorer og forfattere med erfaring fra undervisning og mentoring i matematikk, kjemi og flere realfag."
+  />
+  <style>
+    :root {
+      --bakgrunn: #f7f9fc;
+      --kort: #ffffff;
+      --tekst: #1c2b3a;
+      --dempet: #52657a;
+      --aksent: #0b6e99;
+      --aksent-lys: #e3f2f9;
+      --kant: #dbe4ee;
+      --radius: 16px;
+      --skygge: 0 6px 24px rgba(16, 42, 67, 0.08);
+    }
 
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bakgrunn);
+      color: var(--tekst);
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0b6e99 0%, #0a4f73 100%);
+      color: #fff;
+      padding: 4rem 1.5rem 3.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: -0.02em;
+    }
+
+    header p {
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      color: #d9edf6;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 56px;
+      height: 4px;
+      margin-top: 0.6rem;
+      border-radius: 4px;
+      background: var(--aksent);
+    }
+
+    p { margin: 0 0 1rem; }
+
+    .kort-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .kort {
+      background: var(--kort);
+      border: 1px solid var(--kant);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--skygge);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .kort:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(16, 42, 67, 0.12);
+    }
+
+    .kort h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.15rem;
+      color: var(--aksent);
+    }
+
+    .kort p {
+      margin: 0;
+      color: var(--dempet);
+      font-size: 0.98rem;
+    }
+
+    .highlight {
+      background: var(--aksent-lys);
+      border-left: 4px solid var(--aksent);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .highlight p { margin: 0; }
+
+    ul {
+      margin: 1rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    li { margin-bottom: 0.5rem; }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem 3rem;
+      color: var(--dempet);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--kant);
+    }
+
+    footer a {
+      color: var(--aksent);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Realfagslaben</h1>
+    <p>
+      Vi gjør realfagene tilgjengelige, forståelige og morsomme å lære – og viser
+      hva de faktisk kan brukes til.
+    </p>
+  </header>
+
+  <main>
+
+    <section>
+      <h2>Hvem vi er</h2>
+      <p>
+        Realfagslaben består av <strong>forelesere, mentorer og forfattere</strong>
+        med bred erfaring fra mentoring og undervisning i matematikk, kjemi og
+        flere realfag. Vi brenner for å formidle fagene på en måte som gjør at
+        flere får lyst til å lære – og til å bruke realfag aktivt.
+      </p>
+    </section>
+
+    <section>
+      <h2>Hva vi vil</h2>
+      <p>
+        Vi ønsker å skape interesse for realfagene og gjøre dem:
+      </p>
+      <div class="kort-grid">
+        <div class="kort">
+          <h3>Tilgjengelige</h3>
+          <p>Realfag skal ikke være forbeholdt noen få. Vi forklarer stoffet på en måte som senker terskelen og åpner dørene for flere.</p>
+        </div>
+        <div class="kort">
+          <h3>Lette å forstå</h3>
+          <p>Vi bygger forståelse steg for steg, med klare forklaringer, gode eksempler og fokus på sammenhenger fremfor pugg.</p>
+        </div>
+        <div class="kort">
+          <h3>Morsomme å lære</h3>
+          <p>Nysgjerrighet og mestring er drivkraften vår. Vi viser at realfag kan være engasjerende, kreative og givende.</p>
+        </div>
+        <div class="kort">
+          <h3>Nyttige i praksis</h3>
+          <p>Vi viser hva realfagene kan brukes til – i studier, arbeidsliv og i møte med virkelige problemstillinger.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Erfaringen vår</h2>
+      <p>
+        Gjennom undervisning, forelesninger, mentoring og forfatterskap har vi
+        erfaring med å møte elever og studenter på ulike nivåer. Vi vet at god
+        formidling handler om å se den enkelte, tilpasse forklaringene og skape
+        trygghet for å prøve og feile.
+      </p>
+      <div class="highlight">
+        <p>
+          Målet vårt er å være med på å <strong>heve nivået på realfag her i
+          landet</strong> – ved å gjøre fagene mer tilgjengelige, mer forståelige
+          og mer relevante for flere.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Dette kan du forvente fra oss</h2>
+      <ul>
+        <li>Undervisning og materiell som er tilpasset ulike nivåer og behov</li>
+        <li>Forklaringer som gjør kompliserte temaer håndterbare</li>
+        <li>Fokus på anvendelser og hvorfor realfag betyr noe i praksis</li>
+        <li>Engasjement for at flere oppdager gleden ved realfag</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; <span id="aar"></span> Realfagslaben · <a href="/Realfagslaben/">Tilbake til forsiden</a></p>
+  </footer>
+
+  <script>
+    document.getElementById("aar").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
